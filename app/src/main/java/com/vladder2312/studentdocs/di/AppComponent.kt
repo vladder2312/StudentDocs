@@ -1,5 +1,10 @@
 package com.vladder2312.studentdocs.di
 
+import android.content.Context
+import com.vladder2312.studentdocs.ui.add_document.AddDocumentFragment
+import com.vladder2312.studentdocs.ui.documents.DocumentsFragment
+import com.vladder2312.studentdocs.ui.main.MainActivity
+import com.vladder2312.studentdocs.ui.options.OptionsFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -7,4 +12,10 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
+    fun provideContext() : Context
+    fun provideDocumentsFragment() : DocumentsFragment
+    fun provideAddDocumentFragment() : AddDocumentFragment
+    fun provideOptionsFragment() : OptionsFragment
+
+    fun inject(mainActivity: MainActivity)
 }

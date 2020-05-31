@@ -21,7 +21,6 @@ class App : Application() {
                 Log.e("RxJava","Global Error")
             }
         }
-        @Suppress("DEPRECATION")
         appComponent = DaggerAppComponent.builder().appModule(AppModule(applicationContext)).build()
     }
 }
