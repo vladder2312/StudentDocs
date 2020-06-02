@@ -5,6 +5,7 @@ import com.vladder2312.studentdocs.data.db.DocDao
 import com.vladder2312.studentdocs.data.db.DocDatabase
 import com.vladder2312.studentdocs.data.repositories.DocRepository
 import com.vladder2312.studentdocs.ui.add_document.AddDocumentFragment
+import com.vladder2312.studentdocs.ui.add_document.AddDocumentPresenter
 import com.vladder2312.studentdocs.ui.documents.DocumentsFragment
 import com.vladder2312.studentdocs.ui.main.MainActivity
 import com.vladder2312.studentdocs.ui.options.OptionsFragment
@@ -24,6 +25,5 @@ interface AppComponent {
     fun provideDocRepository() : DocRepository
 
     fun inject(mainActivity: MainActivity)
-    fun inject(documentsFragment: DocumentsFragment)
-    fun inject(addDocumentFragment: AddDocumentFragment)
+    fun inject(addDocumentPresenter: AddDocumentPresenter)
 }

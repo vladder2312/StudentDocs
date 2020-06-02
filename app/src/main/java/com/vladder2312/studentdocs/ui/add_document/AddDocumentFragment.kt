@@ -5,11 +5,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -24,6 +24,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
 
     @InjectPresenter
     lateinit var presenter: AddDocumentPresenter
+    lateinit var doneButton: MenuItem
     private val adapter = EasyAdapter()
     private val photoListController = PhotoListController {
 
@@ -37,7 +38,10 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_add_document, container, false)
+    ): View? {
+        setHasOptionsMenu(true)
+        return inflater.inflate(R.layout.fragment_add_document, container, false)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -45,6 +49,22 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
         initRecycler()
         initListeners()
         initViews()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.add_document_menu, menu)
+        doneButton = menu.getItem(0)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.add_doc_done -> {
+                presenter.saveDocument()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun initRecycler() {
@@ -59,6 +79,9 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
             context?.let { it ->
                 PhotoDialog.showDialog(it, this::openCamera, this::openGallery)
             }
+        }
+        add_doc_name.addTextChangedListener {
+            presenter.nameChanged(it.toString())
         }
     }
 
@@ -123,5 +146,9 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
 
     override fun showPhotos(photos: MutableList<Photo>) {
         adapter.setData(photos, photoListController)
+    }
+
+    override fun showMessage(text: String) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 }

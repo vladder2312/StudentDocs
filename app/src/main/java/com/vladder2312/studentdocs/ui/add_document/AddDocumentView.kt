@@ -11,4 +11,5 @@ interface AddDocumentView : MvpView {
     fun openCamera()
     fun openGallery()
     fun showPhotos(photos: MutableList<Photo>)
+    fun showMessage(text: String)
 }
