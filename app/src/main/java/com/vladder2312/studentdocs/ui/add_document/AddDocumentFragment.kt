@@ -1,6 +1,10 @@
 package com.vladder2312.studentdocs.ui.add_document
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.vladder2312.studentdocs.R
+import com.vladder2312.studentdocs.domain.Photo
+import com.vladder2312.studentdocs.utils.PermissionChecker
+import com.vladder2312.studentdocs.utils.UriCreator
 import kotlinx.android.synthetic.main.fragment_add_document.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 
@@ -18,6 +25,13 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     @InjectPresenter
     lateinit var presenter: AddDocumentPresenter
     private val adapter = EasyAdapter()
+    private val photoListController = PhotoListController {
+
+    }
+
+    private val REQUEST_CAMERA = 22
+    private val REQUEST_GALLERY = 21
+    private lateinit var cameraUri : Uri
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +51,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
         foto_recycler.layoutManager =
             GridLayoutManager(foto_recycler.context, 1, GridLayoutManager.HORIZONTAL, false)
         foto_recycler.adapter = adapter
+        foto_recycler.isNestedScrollingEnabled = false
     }
 
     override fun initListeners() {
@@ -72,10 +87,41 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     }
 
     override fun openCamera() {
-
+        if(PermissionChecker.checkCameraPermission(activity!!)){
+            cameraUri = UriCreator.createUri(context!!)
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri)
+            startActivityForResult(intent, REQUEST_CAMERA)
+        }
     }
 
     override fun openGallery() {
+        if(PermissionChecker.checkGalleryPermission(activity!!)){
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, REQUEST_GALLERY)
+        }
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == RESULT_OK){
+            when (requestCode) {
+                REQUEST_CAMERA -> {
+                    data?.data.let {
+                        presenter.photoLoaded(cameraUri.toString())
+                    }
+                }
+                REQUEST_GALLERY -> {
+                    data?.data.let {
+                        presenter.photoLoaded(it.toString())
+                    }
+                }
+            }
+        }
+    }
+
+    override fun showPhotos(photos: MutableList<Photo>) {
+        adapter.setData(photos, photoListController)
     }
 }
