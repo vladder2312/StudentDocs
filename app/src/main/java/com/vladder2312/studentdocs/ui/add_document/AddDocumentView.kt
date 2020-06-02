@@ -4,4 +4,7 @@ import com.arellomobile.mvp.MvpView
 
 interface AddDocumentView : MvpView {
 
+    fun initRecycler()
+    fun initListeners()
+    fun initViews()
 }
