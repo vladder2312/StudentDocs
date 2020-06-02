@@ -1,19 +1,12 @@
 package com.vladder2312.studentdocs.ui.add_document
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.vladder2312.studentdocs.R
-import com.vladder2312.studentdocs.domain.Photo
 import kotlinx.android.synthetic.main.fragment_add_document.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 
@@ -44,12 +37,22 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     }
 
     override fun initListeners() {
-        add_doc_add_photo.setOnClickListener {
-            
+        add_doc_add_photo.setOnClickListener { _ ->
+            context?.let { it ->
+                PhotoDialog.showDialog(it, this::openCamera, this::openGallery)
+            }
         }
     }
 
     override fun initViews() {
+
+    }
+
+    override fun openCamera() {
+
+    }
+
+    override fun openGallery() {
 
     }
 }

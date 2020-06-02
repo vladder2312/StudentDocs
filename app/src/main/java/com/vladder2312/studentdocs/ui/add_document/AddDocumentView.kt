@@ -7,4 +7,6 @@ interface AddDocumentView : MvpView {
     fun initRecycler()
     fun initListeners()
     fun initViews()
+    fun openCamera()
+    fun openGallery()
 }
