@@ -5,4 +5,10 @@
     <string name="photo">Фото</string>
     <string name="make_photo">Сделать фото</string>
     <string name="from_gallery">Из галереи</string>
+
+    <string-array name="categories">
+        <item>Документы</item>
+        <item>Справки</item>
+        <item>Награды</item>
+    </string-array>
 </resources>
