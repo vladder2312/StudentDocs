@@ -13,10 +13,11 @@ class PhotoListController(
     private val onClickPhotoListener: (Photo) -> Unit
 ) : BindableItemController<Photo, PhotoListController.PhotoListHolder>() {
 
-    inner class PhotoListHolder(parent: ViewGroup) : BindableViewHolder<Photo>(parent, R.layout.item_photo) {
-        private val card : CardView = itemView.findViewById(R.id.photo_item)
-        private val image : ImageView = itemView.findViewById(R.id.image_photo)
-        private lateinit var photo : Photo
+    inner class PhotoListHolder(parent: ViewGroup) :
+        BindableViewHolder<Photo>(parent, R.layout.item_photo) {
+        private val card: CardView = itemView.findViewById(R.id.photo_item)
+        private val image: ImageView = itemView.findViewById(R.id.image_photo)
+        private lateinit var photo: Photo
 
         init {
             card.setOnClickListener { onClickPhotoListener(photo) }
@@ -24,7 +25,7 @@ class PhotoListController(
 
         override fun bind(data: Photo) {
             this.photo = data
-            Picasso.get().load(data.utl).into(image)
+            Picasso.get().load(data.uri).into(image)
         }
     }
 

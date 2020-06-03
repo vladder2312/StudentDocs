@@ -18,10 +18,13 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     @InjectPresenter
     lateinit var presenter: MainPresenter
+
     @Inject
     lateinit var documentsFragment: DocumentsFragment
+
     @Inject
     lateinit var addDocumentFragment: AddDocumentFragment
+
     @Inject
     lateinit var optionsFragment: OptionsFragment
 
@@ -33,12 +36,15 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initListeners()
+
+        supportFragmentManager.beginTransaction().add(R.id.fragment_holder, documentsFragment)
+            .commit()
     }
 
     override fun initListeners() {
         bottom_navigation.setOnNavigationItemSelectedListener {
             val transaction = supportFragmentManager.beginTransaction()
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.action_documents -> {
                     transaction.replace(R.id.fragment_holder, documentsFragment)
                     it.isChecked = true

@@ -9,10 +9,10 @@ import com.vladder2312.studentdocs.domain.Photo
 data class PhotoEntity(
     @PrimaryKey var id : String,
     @ColumnInfo(name = "documentId") var documentId : String,
-    @ColumnInfo(name = "utl") var utl : String
+    @ColumnInfo(name = "utl") var uri : String
 ) {
 
     fun transform() : Photo {
-        return Photo(id, documentId, utl)
+        return Photo(id, documentId, uri)
     }
 }
