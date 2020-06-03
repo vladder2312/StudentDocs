@@ -14,4 +14,5 @@ interface AddDocumentView : MvpView {
     fun startPhotoActivity(uri: String)
     fun showMessage(text: String)
     fun closeFragment()
+    fun showPhotoDeleteDialog(photo: Photo)
 }

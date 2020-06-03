@@ -16,9 +16,9 @@ class DocumentsController(
 
     inner class DocumentHolder(parent: ViewGroup) :
         BindableViewHolder<Document>(parent, R.layout.item_document) {
-        private val card: CardView = itemView.findViewById(R.id.document_card)
-        private val image: ImageView = itemView.findViewById(R.id.document_image)
-        private val name: TextView = itemView.findViewById(R.id.document_name)
+        private val card: CardView = itemView.findViewById(R.id.item_document_card)
+        private val image: ImageView = itemView.findViewById(R.id.item_document_image)
+        private val name: TextView = itemView.findViewById(R.id.item_document_name)
         private lateinit var document: Document
 
         init {

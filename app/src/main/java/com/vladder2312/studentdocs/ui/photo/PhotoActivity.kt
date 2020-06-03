@@ -6,7 +6,7 @@ import com.squareup.picasso.Picasso
 import com.vladder2312.studentdocs.R
 import kotlinx.android.synthetic.main.activity_photo.*
 
-class PhotoActivity : MvpAppCompatActivity(), PhotoView {
+class PhotoActivity : MvpAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +15,7 @@ class PhotoActivity : MvpAppCompatActivity(), PhotoView {
         initViews()
     }
 
-    override fun initViews(){
+    private fun initViews(){
         Picasso.get().load(intent.getStringExtra("uri")).into(photo_image)
     }
 }

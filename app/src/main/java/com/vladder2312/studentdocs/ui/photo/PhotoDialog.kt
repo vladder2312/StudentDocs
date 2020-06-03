@@ -1,4 +1,4 @@
-package com.vladder2312.studentdocs.ui.add_document
+package com.vladder2312.studentdocs.ui.photo
 
 import android.app.Dialog
 import android.content.Context
