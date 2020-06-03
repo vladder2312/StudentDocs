@@ -7,7 +7,8 @@ data class Document(
     val id: String,
     val name: String,
     val category: Category,
-    val createdDate: Long
+    val createdDate: Long,
+    val coverURI: String
 ) : Serializable {
 
     fun transform(): DocumentEntity {
@@ -22,6 +23,6 @@ data class Document(
                 2
             }
         }
-        return DocumentEntity(id, name, category, createdDate)
+        return DocumentEntity(id, name, category, createdDate, coverURI)
     }
 }

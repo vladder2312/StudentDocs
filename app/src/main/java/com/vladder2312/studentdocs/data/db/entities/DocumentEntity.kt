@@ -11,7 +11,8 @@ data class DocumentEntity(
     @PrimaryKey var id: String,
     @ColumnInfo(name = "name") var name : String,
     @ColumnInfo(name = "category") var category: Int,
-    @ColumnInfo(name = "createdDate") var createdDate : Long
+    @ColumnInfo(name = "createdDate") var createdDate : Long,
+    @ColumnInfo(name = "cover") var coverURI : String
 ) {
 
     fun transform() : Document{
@@ -27,6 +28,6 @@ data class DocumentEntity(
             }
             else -> Category.Document
         }
-        return Document(id, name, category, createdDate)
+        return Document(id, name, category, createdDate, coverURI)
     }
 }

@@ -23,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.photo_pager.PhotoActivity"/>
+        <activity android:name=".ui.photo.PhotoActivity"/>
+        <activity android:name=".ui.document.DocumentActivity"/>
     </application>
 
 </manifest>

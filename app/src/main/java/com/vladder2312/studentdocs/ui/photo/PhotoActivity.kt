@@ -1,4 +1,4 @@
-package com.vladder2312.studentdocs.ui.photo_pager
+package com.vladder2312.studentdocs.ui.photo
 
 import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity

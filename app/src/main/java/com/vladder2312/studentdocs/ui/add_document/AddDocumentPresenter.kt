@@ -46,13 +46,16 @@ class AddDocumentPresenter : MvpPresenter<AddDocumentView>() {
     fun saveDocument() {
         if (model.name.trim() == "") {
             viewState.showMessage("Введите название документа")
+        } else if(model.photos.size == 0) {
+            viewState.showMessage("Добавьте фотографию")
         } else {
             docRepository.insertDocument(
                 Document(
                     model.id,
                     model.name,
                     model.category,
-                    System.currentTimeMillis() / 1000L
+                    System.currentTimeMillis() / 1000L,
+                    model.photos[0].uri
                 )
             )
             for(photo in model.photos){
@@ -61,5 +64,9 @@ class AddDocumentPresenter : MvpPresenter<AddDocumentView>() {
             viewState.showMessage("Успешно добавлено")
             viewState.closeFragment()
         }
+    }
+
+    fun checkModel(){
+
     }
 }

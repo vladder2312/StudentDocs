@@ -1,6 +1,7 @@
 package com.vladder2312.studentdocs.ui.add_document
 
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -15,12 +16,12 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.vladder2312.studentdocs.R
 import com.vladder2312.studentdocs.domain.Photo
-import com.vladder2312.studentdocs.ui.documents.DocumentsFragment
-import com.vladder2312.studentdocs.ui.photo_pager.PhotoActivity
+import com.vladder2312.studentdocs.ui.photo.PhotoActivity
 import com.vladder2312.studentdocs.utils.PermissionChecker
 import com.vladder2312.studentdocs.utils.UriCreator
 import kotlinx.android.synthetic.main.fragment_add_document.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
+import ru.surfstudio.android.easyadapter.ItemList
 
 class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
 
@@ -29,7 +30,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     private lateinit var doneButton: MenuItem
     private val photoAdapter = EasyAdapter()
     private val photoListController = PhotoListController {
-        startPhotoActivity(it.utl)
+        startPhotoActivity(it.uri)
     }
 
     private val REQUEST_CAMERA = 22
@@ -53,6 +54,11 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
         initViews()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.add_document_menu, menu)
         doneButton = menu.getItem(0)
@@ -70,6 +76,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     }
 
     override fun initRecycler() {
+        photoAdapter.setItems(ItemList())
         foto_recycler.layoutManager =
             GridLayoutManager(foto_recycler.context, 1, GridLayoutManager.HORIZONTAL, false)
         foto_recycler.adapter = photoAdapter
@@ -160,7 +167,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
-    override fun closeFragment(){
+    override fun closeFragment() {
         activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
     }
 }
