@@ -1,6 +1,5 @@
 package com.vladder2312.studentdocs.ui.add_document
 
-import android.widget.Toast
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.vladder2312.studentdocs.App
@@ -41,7 +40,7 @@ class AddDocumentPresenter : MvpPresenter<AddDocumentView>() {
 
     fun photoLoaded(utl: String) {
         model.photos.add(Photo(System.currentTimeMillis().toString(), model.id, utl))
-        viewState.showPhotos(model.photos)
+        viewState.addToAdapter(model.photos)
     }
 
     fun saveDocument() {
@@ -60,6 +59,7 @@ class AddDocumentPresenter : MvpPresenter<AddDocumentView>() {
                 docRepository.insertPhoto(photo)
             }
             viewState.showMessage("Успешно добавлено")
+            viewState.closeFragment()
         }
     }
 }

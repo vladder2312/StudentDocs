@@ -10,6 +10,8 @@ interface AddDocumentView : MvpView {
     fun initViews()
     fun openCamera()
     fun openGallery()
-    fun showPhotos(photos: MutableList<Photo>)
+    fun addToAdapter(photos: MutableList<Photo>)
+    fun startPhotoActivity(uri: String)
     fun showMessage(text: String)
+    fun closeFragment()
 }

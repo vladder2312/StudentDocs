@@ -15,6 +15,8 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.vladder2312.studentdocs.R
 import com.vladder2312.studentdocs.domain.Photo
+import com.vladder2312.studentdocs.ui.documents.DocumentsFragment
+import com.vladder2312.studentdocs.ui.photo_pager.PhotoActivity
 import com.vladder2312.studentdocs.utils.PermissionChecker
 import com.vladder2312.studentdocs.utils.UriCreator
 import kotlinx.android.synthetic.main.fragment_add_document.*
@@ -24,15 +26,15 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
 
     @InjectPresenter
     lateinit var presenter: AddDocumentPresenter
-    lateinit var doneButton: MenuItem
-    private val adapter = EasyAdapter()
+    private lateinit var doneButton: MenuItem
+    private val photoAdapter = EasyAdapter()
     private val photoListController = PhotoListController {
-
+        startPhotoActivity(it.utl)
     }
 
     private val REQUEST_CAMERA = 22
     private val REQUEST_GALLERY = 21
-    private lateinit var cameraUri : Uri
+    private lateinit var cameraUri: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +60,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.add_doc_done -> {
                 presenter.saveDocument()
                 true
@@ -70,7 +72,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     override fun initRecycler() {
         foto_recycler.layoutManager =
             GridLayoutManager(foto_recycler.context, 1, GridLayoutManager.HORIZONTAL, false)
-        foto_recycler.adapter = adapter
+        foto_recycler.adapter = photoAdapter
         foto_recycler.isNestedScrollingEnabled = false
     }
 
@@ -110,7 +112,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     }
 
     override fun openCamera() {
-        if(PermissionChecker.checkCameraPermission(activity!!)){
+        if (PermissionChecker.checkCameraPermission(activity!!)) {
             cameraUri = UriCreator.createUri(context!!)
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri)
@@ -119,7 +121,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     }
 
     override fun openGallery() {
-        if(PermissionChecker.checkGalleryPermission(activity!!)){
+        if (PermissionChecker.checkGalleryPermission(activity!!)) {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, REQUEST_GALLERY)
@@ -128,7 +130,7 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == RESULT_OK){
+        if (resultCode == RESULT_OK) {
             when (requestCode) {
                 REQUEST_CAMERA -> {
                     data?.data.let {
@@ -144,11 +146,21 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
         }
     }
 
-    override fun showPhotos(photos: MutableList<Photo>) {
-        adapter.setData(photos, photoListController)
+    override fun addToAdapter(photos: MutableList<Photo>) {
+        photoAdapter.setData(photos, photoListController)
+    }
+
+    override fun startPhotoActivity(uri: String) {
+        val intent = Intent(context, PhotoActivity::class.java)
+        intent.putExtra("uri", uri)
+        startActivity(intent)
     }
 
     override fun showMessage(text: String) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun closeFragment(){
+        activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
     }
 }
