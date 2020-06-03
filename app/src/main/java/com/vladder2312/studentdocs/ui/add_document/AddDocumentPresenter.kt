@@ -66,7 +66,8 @@ class AddDocumentPresenter : MvpPresenter<AddDocumentView>() {
         }
     }
 
-    fun checkModel(){
-
+    fun deletePhoto(photo: Photo){
+        model.photos.remove(photo)
+        viewState.addToAdapter(model.photos)
     }
 }

@@ -5,8 +5,9 @@ import com.vladder2312.studentdocs.domain.Photo
 
 class DocumentModel {
 
+    var id = ""
     var name = ""
     var category = Category.Document
-    var createdDate = 0
+    var createdDate = 0L
     var photos = mutableListOf<Photo>()
 }

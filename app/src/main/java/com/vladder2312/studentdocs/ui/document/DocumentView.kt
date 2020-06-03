@@ -12,4 +12,7 @@ interface DocumentView : MvpView {
     fun setPhotos(photos: List<Photo>)
     fun startPhotoActivity(uri: String)
     fun changeMode(on: Boolean)
+    fun openCamera()
+    fun openGallery()
+    fun showPhotoDeleteDialog(photo: Photo)
 }

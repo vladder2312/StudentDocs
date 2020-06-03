@@ -1,5 +1,6 @@
 package com.vladder2312.studentdocs.ui.photo
 
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
@@ -10,7 +11,8 @@ import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 class PhotoListController(
-    private val onClickPhotoListener: (Photo) -> Unit
+    private val onClickPhotoListener: (Photo) -> Unit,
+    private val onLongClickListener: (Photo) -> Boolean
 ) : BindableItemController<Photo, PhotoListController.PhotoListHolder>() {
 
     inner class PhotoListHolder(parent: ViewGroup) :
@@ -21,6 +23,7 @@ class PhotoListController(
 
         init {
             card.setOnClickListener { onClickPhotoListener(photo) }
+            card.setOnLongClickListener { onLongClickListener(photo) }
         }
 
         override fun bind(data: Photo) {

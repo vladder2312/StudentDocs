@@ -3,6 +3,7 @@ package com.vladder2312.studentdocs.data.db
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.vladder2312.studentdocs.data.db.entities.DocumentEntity
 import com.vladder2312.studentdocs.data.db.entities.PhotoEntity
 import io.reactivex.Flowable
@@ -33,4 +34,7 @@ interface DocDao {
 
     @Insert
     fun insertPhoto(photoEntity: PhotoEntity)
+
+    @Update
+    fun updateDocument(documentEntity: DocumentEntity)
 }

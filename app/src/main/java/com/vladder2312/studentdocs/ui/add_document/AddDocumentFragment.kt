@@ -1,6 +1,8 @@
 package com.vladder2312.studentdocs.ui.add_document
 
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -30,10 +32,15 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     lateinit var presenter: AddDocumentPresenter
     private lateinit var doneButton: MenuItem
     private val photoAdapter = EasyAdapter()
-    private val photoListController =
-        PhotoListController {
+    private val photoListController = PhotoListController(
+        {
             startPhotoActivity(it.uri)
+        },
+        {
+            showPhotoDeleteDialog(it)
+            true
         }
+    )
 
     private val REQUEST_CAMERA = 22
     private val REQUEST_GALLERY = 21
@@ -171,5 +178,15 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
 
     override fun closeFragment() {
         activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+    }
+
+    override fun showPhotoDeleteDialog(photo: Photo) {
+        AlertDialog.Builder(context)
+            .setMessage("Вы уверены, что хотите удалить фото?")
+            .setPositiveButton("Да") { _: DialogInterface, _: Int ->
+                presenter.deletePhoto(photo)
+            }
+            .setNegativeButton("Нет") { _: DialogInterface, _: Int -> }
+            .show()
     }
 }
