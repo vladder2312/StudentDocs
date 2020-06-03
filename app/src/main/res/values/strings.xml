@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">StudentDocs</string>
+    <string name="document_name">Название документа</string>
+    <string name="document_category">Категория</string>
+    <string name="photo">Фото</string>
+    <string name="make_photo">Сделать фото</string>
+    <string name="from_gallery">Из галереи</string>
+    <string name="done">Готово</string>
+
+    <string-array name="categories">
+        <item>Документы</item>
+        <item>Справки</item>
+        <item>Награды</item>
+    </string-array>
 </resources>
