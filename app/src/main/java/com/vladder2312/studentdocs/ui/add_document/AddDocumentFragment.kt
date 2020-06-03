@@ -1,7 +1,6 @@
 package com.vladder2312.studentdocs.ui.add_document
 
 import android.app.Activity.RESULT_OK
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,6 +16,8 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.vladder2312.studentdocs.R
 import com.vladder2312.studentdocs.domain.Photo
 import com.vladder2312.studentdocs.ui.photo.PhotoActivity
+import com.vladder2312.studentdocs.ui.photo.PhotoDialog
+import com.vladder2312.studentdocs.ui.photo.PhotoListController
 import com.vladder2312.studentdocs.utils.PermissionChecker
 import com.vladder2312.studentdocs.utils.UriCreator
 import kotlinx.android.synthetic.main.fragment_add_document.*
@@ -29,9 +30,10 @@ class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
     lateinit var presenter: AddDocumentPresenter
     private lateinit var doneButton: MenuItem
     private val photoAdapter = EasyAdapter()
-    private val photoListController = PhotoListController {
-        startPhotoActivity(it.uri)
-    }
+    private val photoListController =
+        PhotoListController {
+            startPhotoActivity(it.uri)
+        }
 
     private val REQUEST_CAMERA = 22
     private val REQUEST_GALLERY = 21

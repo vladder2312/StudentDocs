@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.vladder2312.studentdocs.R
+import com.vladder2312.studentdocs.domain.Category
 import com.vladder2312.studentdocs.domain.Document
 import com.vladder2312.studentdocs.ui.document.DocumentActivity
 import kotlinx.android.synthetic.main.fragment_documents.*
@@ -54,11 +55,7 @@ class DocumentsFragment : MvpAppCompatFragment(), DocumentsView {
 
     override fun startDocumentActivity(document: Document) {
         val intent = Intent(context, DocumentActivity::class.java)
-        intent.putExtra("id", document.id)
-        intent.putExtra("category", document.category)
-        intent.putExtra("name", document.name)
-        intent.putExtra("createdDate", document.createdDate)
-        intent.putExtra("coverURI", document.coverURI)
+        intent.putExtra("document", document)
         startActivity(intent)
     }
 }

@@ -1,4 +1,4 @@
-package com.vladder2312.studentdocs.ui.add_document
+package com.vladder2312.studentdocs.ui.photo
 
 import android.view.ViewGroup
 import android.widget.ImageView
