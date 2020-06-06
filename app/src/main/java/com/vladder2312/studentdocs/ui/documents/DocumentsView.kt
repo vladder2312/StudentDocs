@@ -5,7 +5,7 @@ import com.vladder2312.studentdocs.domain.Document
 
 interface DocumentsView : MvpView {
 
-    fun initRecycler()
+    fun initViews()
     fun setData(documents: List<Document>)
     fun startDocumentActivity(document: Document)
 }

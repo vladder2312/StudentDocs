@@ -14,12 +14,6 @@ interface DocDao {
     @Query("Select * From DocumentEntity")
     fun getDocuments() : Flowable<List<DocumentEntity>>
 
-    @Query("Select * From DocumentEntity Where category=:category")
-    fun getDocumentsByCategory(category : String) : Flowable<List<DocumentEntity>>
-
-    @Query("Select * From DocumentEntity Where name like :name")
-    fun getDocumentsByName(name: String) : Flowable<List<DocumentEntity>>
-
     @Query("Select * From PhotoEntity Where documentId=:documentId")
     fun getPhotos(documentId : String) : Flowable<List<PhotoEntity>>
 

@@ -15,4 +15,11 @@
         <item>Справки</item>
         <item>Награды</item>
     </string-array>
+
+    <string-array name="tab_titles">
+        <item>Все</item>
+        <item>Документы</item>
+        <item>Справки</item>
+        <item>Награды</item>
+    </string-array>
 </resources>
