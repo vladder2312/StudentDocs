@@ -5,6 +5,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.vladder2312.studentdocs.App
 import com.vladder2312.studentdocs.data.repositories.DocRepository
+import com.vladder2312.studentdocs.domain.Category
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
@@ -40,8 +41,24 @@ class DocumentsPresenter : MvpPresenter<DocumentsView>() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
+                model.documents.clear()
                 model.documents.addAll(it)
                 viewState.setData(model.documents)
             }
+    }
+
+    fun filterDocuments(category: Int) {
+        when (category) {
+            0 -> viewState.setData(model.documents)
+            1 -> viewState.setData(model.documents.filter {
+                it.category == Category.Document
+            })
+            2 -> viewState.setData(model.documents.filter {
+                it.category == Category.Certificate
+            })
+            3 -> viewState.setData(model.documents.filter {
+                it.category == Category.Reward
+            })
+        }
     }
 }

@@ -4,9 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.vladder2312.studentdocs.R
 import com.vladder2312.studentdocs.domain.Document
 import com.vladder2312.studentdocs.ui.document.DocumentActivity
@@ -18,7 +19,7 @@ class DocumentsFragment : MvpAppCompatFragment(), DocumentsView {
     @InjectPresenter
     lateinit var presenter: DocumentsPresenter
     private lateinit var search: SearchView
-    private val adapter = EasyAdapter()
+    private val documentAdapter = EasyAdapter()
     private val documentController = DocumentsController {
         startDocumentActivity(it)
     }
@@ -40,17 +41,9 @@ class DocumentsFragment : MvpAppCompatFragment(), DocumentsView {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        initRecycler()
+        initViews()
     }
 
     override fun onResume() {
@@ -58,13 +51,24 @@ class DocumentsFragment : MvpAppCompatFragment(), DocumentsView {
         presenter.loadDocuments()
     }
 
-    override fun initRecycler() {
-        documents_recycler.layoutManager = LinearLayoutManager(context)
-        documents_recycler.adapter = adapter
+    override fun initViews() {
+        documents_pager.adapter = DocumentsPagerAdapter(documentAdapter)
+        documents_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                presenter.filterDocuments(position)
+            }
+        })
+        TabLayoutMediator(
+            document_tabs,
+            documents_pager,
+            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+                tab.text = resources.getStringArray(R.array.tab_titles)[position]
+            }).attach()
     }
 
     override fun setData(documents: List<Document>) {
-        adapter.setData(documents, documentController)
+        documentAdapter.setData(documents, documentController)
     }
 
     override fun startDocumentActivity(document: Document) {
