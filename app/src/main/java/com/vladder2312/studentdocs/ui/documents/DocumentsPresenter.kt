@@ -18,15 +18,11 @@ class DocumentsPresenter : MvpPresenter<DocumentsView>() {
     lateinit var docRepository: DocRepository
     val model = DocumentsModel()
     val queryTextListener = object : SearchView.OnQueryTextListener {
-
         override fun onQueryTextSubmit(query: String?) = true
-
         override fun onQueryTextChange(newText: String?): Boolean {
             if (newText != null) {
-                viewState.setData(model.documents.filter {
-                    it.name.toLowerCase(Locale.getDefault())
-                        .contains(newText.trim().toLowerCase(Locale.getDefault()))
-                })
+                model.searchQueryText = newText
+                filterDocuments()
             }
             return true
         }
@@ -47,17 +43,25 @@ class DocumentsPresenter : MvpPresenter<DocumentsView>() {
             }
     }
 
-    fun filterDocuments(category: Int) {
-        when (category) {
+    fun pageSelected(position: Int) {
+        model.page = position
+        filterDocuments()
+    }
+
+    fun filterDocuments() {
+        when (model.page) {
             0 -> viewState.setData(model.documents)
             1 -> viewState.setData(model.documents.filter {
-                it.category == Category.Document
+                it.category == Category.Document && it.name.toLowerCase(Locale.getDefault())
+                    .contains(model.searchQueryText.trim().toLowerCase(Locale.getDefault()))
             })
             2 -> viewState.setData(model.documents.filter {
-                it.category == Category.Certificate
+                it.category == Category.Certificate && it.name.toLowerCase(Locale.getDefault())
+                    .contains(model.searchQueryText.trim().toLowerCase(Locale.getDefault()))
             })
             3 -> viewState.setData(model.documents.filter {
-                it.category == Category.Reward
+                it.category == Category.Reward && it.name.toLowerCase(Locale.getDefault())
+                    .contains(model.searchQueryText.trim().toLowerCase(Locale.getDefault()))
             })
         }
     }

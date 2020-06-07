@@ -56,7 +56,7 @@ class DocumentsFragment : MvpAppCompatFragment(), DocumentsView {
         documents_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                presenter.filterDocuments(position)
+                presenter.pageSelected(position)
             }
         })
         TabLayoutMediator(
