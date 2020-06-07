@@ -9,6 +9,15 @@
     <string name="change">Изменить</string>
     <string name="delete">Удалить</string>
     <string name="done">Готово</string>
+    <string name="about_app">О приложении</string>
+    <string name="used_memory">Объём хранимых данных</string>
+    <string name="file_amount">Количество файлов</string>
+    <string name="make_copy">Сделать резервную копию</string>
+    <string name="delete_data">Удалить все данные</string>
+    <string name="load_copy">Восстановить из резервной копии</string>
+    <string name="developer">Разработчик: Владислав Стяжкин</string>
+    <string name="app_description">Приложение для хранения документов</string>
+    <string name="made_date">Создано 07.06.2020</string>
 
     <string-array name="categories">
         <item>Документы</item>

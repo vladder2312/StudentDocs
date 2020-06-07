@@ -12,16 +12,25 @@ import io.reactivex.Flowable
 interface DocDao {
 
     @Query("Select * From DocumentEntity")
-    fun getDocuments() : Flowable<List<DocumentEntity>>
+    fun getDocuments(): Flowable<List<DocumentEntity>>
 
     @Query("Select * From PhotoEntity Where documentId=:documentId")
-    fun getPhotos(documentId : String) : Flowable<List<PhotoEntity>>
+    fun getPhotos(documentId: String): Flowable<List<PhotoEntity>>
+
+    @Query("Select * From PhotoEntity")
+    fun getAllPhotos(): Flowable<List<PhotoEntity>>
 
     @Query("Delete From DocumentEntity Where id = :id")
-    fun deleteDocument(id : String)
+    fun deleteDocument(id: String)
 
     @Query("Delete From PhotoEntity Where id = :id")
-    fun deletePhoto(id : String)
+    fun deletePhoto(id: String)
+
+    @Query("Delete From PhotoEntity")
+    fun deleteAllPhotos()
+
+    @Query("Delete From DocumentEntity")
+    fun deleteAllDocuments()
 
     @Insert
     fun insertDocument(documentEntity: DocumentEntity)
