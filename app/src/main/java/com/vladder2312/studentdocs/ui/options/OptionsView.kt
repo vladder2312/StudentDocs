@@ -7,4 +7,5 @@ interface OptionsView : MvpView {
     fun initListeners()
     fun showUsage(memory: String, amount: Int)
     fun showDeleteDialog()
+    fun startAboutAppActivity()
 }

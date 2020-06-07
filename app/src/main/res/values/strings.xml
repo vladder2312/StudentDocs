@@ -15,6 +15,9 @@
     <string name="make_copy">Сделать резервную копию</string>
     <string name="delete_data">Удалить все данные</string>
     <string name="load_copy">Восстановить из резервной копии</string>
+    <string name="developer">Разработчик: Владислав Стяжкин</string>
+    <string name="app_description">Приложение для хранения документов</string>
+    <string name="made_date">Создано 07.06.2020</string>
 
     <string-array name="categories">
         <item>Документы</item>

@@ -2,11 +2,13 @@ package com.vladder2312.studentdocs.ui.options
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.vladder2312.studentdocs.R
+import com.vladder2312.studentdocs.ui.about_app.AboutAppActivity
 import kotlinx.android.synthetic.main.fragment_options.*
 
 class OptionsFragment : MvpAppCompatFragment(), OptionsView {
@@ -26,6 +28,15 @@ class OptionsFragment : MvpAppCompatFragment(), OptionsView {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.options_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.about_app_button -> {
+                startAboutAppActivity()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -60,5 +71,9 @@ class OptionsFragment : MvpAppCompatFragment(), OptionsView {
             }
             .setNegativeButton("Нет") { _: DialogInterface, _: Int -> }
             .show()
+    }
+
+    override fun startAboutAppActivity() {
+        startActivity(Intent(context, AboutAppActivity::class.java))
     }
 }
