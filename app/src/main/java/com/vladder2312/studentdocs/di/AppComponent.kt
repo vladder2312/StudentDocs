@@ -11,6 +11,7 @@ import com.vladder2312.studentdocs.ui.documents.DocumentsFragment
 import com.vladder2312.studentdocs.ui.documents.DocumentsPresenter
 import com.vladder2312.studentdocs.ui.main.MainActivity
 import com.vladder2312.studentdocs.ui.options.OptionsFragment
+import com.vladder2312.studentdocs.ui.options.OptionsPresenter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,16 +19,17 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun provideContext() : Context
-    fun provideDocumentsFragment() : DocumentsFragment
-    fun provideAddDocumentFragment() : AddDocumentFragment
-    fun provideOptionsFragment() : OptionsFragment
-    fun provideDocDatabase() : DocDatabase
-    fun provideDocDao() : DocDao
-    fun provideDocRepository() : DocRepository
+    fun provideContext(): Context
+    fun provideDocumentsFragment(): DocumentsFragment
+    fun provideAddDocumentFragment(): AddDocumentFragment
+    fun provideOptionsFragment(): OptionsFragment
+    fun provideDocDatabase(): DocDatabase
+    fun provideDocDao(): DocDao
+    fun provideDocRepository(): DocRepository
 
     fun inject(mainActivity: MainActivity)
     fun inject(addDocumentPresenter: AddDocumentPresenter)
     fun inject(documentsPresenter: DocumentsPresenter)
     fun inject(documentPresenter: DocumentPresenter)
+    fun inject(optionsPresenter: OptionsPresenter)
 }

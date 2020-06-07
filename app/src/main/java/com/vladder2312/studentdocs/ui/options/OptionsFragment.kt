@@ -5,6 +5,7 @@ import android.view.*
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.vladder2312.studentdocs.R
+import kotlinx.android.synthetic.main.fragment_options.*
 
 class OptionsFragment : MvpAppCompatFragment(), OptionsView {
 
@@ -28,10 +29,16 @@ class OptionsFragment : MvpAppCompatFragment(), OptionsView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        if(context != null) presenter.loadData(context!!.contentResolver)
         initListeners()
     }
 
     override fun initListeners() {
 
+    }
+
+    override fun showUsage(memory: String, amount: Int) {
+        options_used_memory.text = memory
+        options_file_amount.text = amount.toString()
     }
 }

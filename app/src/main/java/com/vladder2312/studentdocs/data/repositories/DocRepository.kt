@@ -10,13 +10,20 @@ class DocRepository @Inject constructor(
     private val docDao: DocDao
 ) {
 
-    fun getDocuments() : Flowable<List<Document>> = docDao.getDocuments().map { list ->
+    fun getDocuments(): Flowable<List<Document>> = docDao.getDocuments().map { list ->
         list.map {
             it.transform()
         }
     }
 
-    fun getPhotos(documentId: String) : Flowable<List<Photo>> = docDao.getPhotos(documentId).map { list ->
+    fun getPhotos(documentId: String): Flowable<List<Photo>> =
+        docDao.getPhotos(documentId).map { list ->
+            list.map {
+                it.transform()
+            }
+        }
+
+    fun getAllPhotos(): Flowable<List<Photo>> = docDao.getAllPhotos().map { list ->
         list.map {
             it.transform()
         }
