@@ -1,5 +1,7 @@
 package com.vladder2312.studentdocs.ui.options
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import com.arellomobile.mvp.MvpAppCompatFragment
@@ -34,11 +36,29 @@ class OptionsFragment : MvpAppCompatFragment(), OptionsView {
     }
 
     override fun initListeners() {
-
+        options_make_copy.setOnClickListener {
+            presenter.makeCopy()
+        }
+        options_load_copy.setOnClickListener {
+            presenter.loadCopy()
+        }
+        options_delete_data.setOnClickListener {
+            showDeleteDialog()
+        }
     }
 
     override fun showUsage(memory: String, amount: Int) {
         options_used_memory.text = memory
         options_file_amount.text = amount.toString()
+    }
+
+    override fun showDeleteDialog() {
+        AlertDialog.Builder(context)
+            .setMessage("Вы действительно хотите удалить все данные?")
+            .setPositiveButton("Да") { _: DialogInterface, _: Int ->
+                presenter.deleteData()
+            }
+            .setNegativeButton("Нет") { _: DialogInterface, _: Int -> }
+            .show()
     }
 }

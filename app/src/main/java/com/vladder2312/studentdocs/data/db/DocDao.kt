@@ -26,6 +26,12 @@ interface DocDao {
     @Query("Delete From PhotoEntity Where id = :id")
     fun deletePhoto(id: String)
 
+    @Query("Delete From PhotoEntity")
+    fun deleteAllPhotos()
+
+    @Query("Delete From DocumentEntity")
+    fun deleteAllDocuments()
+
     @Insert
     fun insertDocument(documentEntity: DocumentEntity)
 

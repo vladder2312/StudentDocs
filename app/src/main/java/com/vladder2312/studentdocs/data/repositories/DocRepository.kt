@@ -37,5 +37,10 @@ class DocRepository @Inject constructor(
 
     fun deleteDocument(id: String) = docDao.deleteDocument(id)
 
+    fun deleteAll() {
+        docDao.deleteAllDocuments()
+        docDao.deleteAllPhotos()
+    }
+
     fun updateDocument(document: Document) = docDao.updateDocument(document.transform())
 }

@@ -40,4 +40,16 @@ class OptionsPresenter : MvpPresenter<OptionsView>() {
                 viewState.showUsage(model.memoryUsed.toString()+"КБ", model.amountPhoto)
             }
     }
+
+    fun deleteData(){
+        docRepository.deleteAll()
+    }
+
+    fun makeCopy(){
+
+    }
+
+    fun loadCopy(){
+
+    }
 }
