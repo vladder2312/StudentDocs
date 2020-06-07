@@ -26,6 +26,9 @@ interface DocDao {
     @Query("Delete From PhotoEntity Where id = :id")
     fun deletePhoto(id: String)
 
+    @Query("Delete From PhotoEntity Where documentId=:documentId")
+    fun deletePhotoOfDocuments(documentId: String)
+
     @Query("Delete From PhotoEntity")
     fun deleteAllPhotos()
 
