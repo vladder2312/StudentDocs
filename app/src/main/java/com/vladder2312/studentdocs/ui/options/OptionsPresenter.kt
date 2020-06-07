@@ -37,7 +37,7 @@ class OptionsPresenter : MvpPresenter<OptionsView>() {
                 }
                 model.memoryUsed = MemoryChecker.calculateUsedMemory(contentResolver, uriList)
                 model.amountPhoto = uriList.size
-                viewState.showUsage(model.memoryUsed.toString()+"КБ", model.amountPhoto)
+                viewState.showUsage(model.memoryUsed, model.amountPhoto)
             }
     }
 

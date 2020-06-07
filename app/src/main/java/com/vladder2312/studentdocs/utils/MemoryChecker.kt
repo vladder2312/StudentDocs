@@ -9,8 +9,8 @@ object MemoryChecker {
     fun calculateUsedMemory(
         contentResolver: ContentResolver,
         uris: MutableList<Uri>
-    ): Int {
-        var memorySize = 0
+    ): String {
+        var size = 0
         var fileDescriptor: ParcelFileDescriptor?
         uris.removeAll(uris.filter {
             it.toString().contains("content://")
@@ -18,10 +18,13 @@ object MemoryChecker {
         for (uri in uris) {
             fileDescriptor = contentResolver.openFileDescriptor(uri, "r")
             if (fileDescriptor != null) {
-                memorySize += fileDescriptor.statSize.toInt() / 1024
+                size += fileDescriptor.statSize.toInt() / 1024
             }
             fileDescriptor?.close()
         }
-        return memorySize
+        return if(size>1024) {
+            size/=1024
+            size.toString()+"МБ"
+        } else size.toString()+"КБ"
     }
 }

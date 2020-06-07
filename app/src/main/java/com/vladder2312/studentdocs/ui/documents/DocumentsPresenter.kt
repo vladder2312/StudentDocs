@@ -50,7 +50,10 @@ class DocumentsPresenter : MvpPresenter<DocumentsView>() {
 
     fun filterDocuments() {
         when (model.page) {
-            0 -> viewState.setData(model.documents)
+            0 -> viewState.setData(model.documents.filter {
+                it.name.toLowerCase(Locale.getDefault())
+                    .contains(model.searchQueryText.trim().toLowerCase(Locale.getDefault()))
+            })
             1 -> viewState.setData(model.documents.filter {
                 it.category == Category.Document && it.name.toLowerCase(Locale.getDefault())
                     .contains(model.searchQueryText.trim().toLowerCase(Locale.getDefault()))
