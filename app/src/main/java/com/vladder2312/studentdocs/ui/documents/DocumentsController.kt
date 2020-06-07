@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import com.vladder2312.studentdocs.R
 import com.vladder2312.studentdocs.domain.Document
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
@@ -28,7 +28,9 @@ class DocumentsController(
         override fun bind(data: Document) {
             this.document = data
             name.text = data.name
-            Picasso.get().load(data.coverURI).into(image)
+            Glide.with(image)
+                .load(data.coverURI)
+                .into(image)
         }
     }
 
