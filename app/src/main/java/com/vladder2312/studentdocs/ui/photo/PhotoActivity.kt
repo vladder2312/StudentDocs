@@ -2,7 +2,7 @@ package com.vladder2312.studentdocs.ui.photo
 
 import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import com.vladder2312.studentdocs.R
 import kotlinx.android.synthetic.main.activity_photo.*
 
@@ -15,7 +15,9 @@ class PhotoActivity : MvpAppCompatActivity() {
         initViews()
     }
 
-    private fun initViews(){
-        Picasso.get().load(intent.getStringExtra("uri")).into(photo_image)
+    private fun initViews() {
+        Glide.with(photo_image)
+            .load(intent.getStringExtra("uri"))
+            .into(photo_image)
     }
 }

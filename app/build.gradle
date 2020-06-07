@@ -77,6 +77,9 @@ dependencies {
     implementation 'tech.schoolhelper:moxy-x:1.7.0'
     implementation 'tech.schoolhelper:moxy-x-androidx:1.7.0'
 
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'
 
