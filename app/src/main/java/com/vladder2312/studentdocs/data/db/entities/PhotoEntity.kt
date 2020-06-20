@@ -5,6 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.vladder2312.studentdocs.domain.Photo
 
+/**
+ * Сущность фото для базы данных
+ */
 @Entity
 data class PhotoEntity(
     @PrimaryKey var id : String,

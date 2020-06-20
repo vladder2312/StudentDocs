@@ -31,6 +31,9 @@ import kotlinx.android.synthetic.main.activity_document.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 
+/**
+ * Активити с информацией о документе
+ */
 class DocumentActivity : MvpAppCompatActivity(), DocumentView {
 
     @InjectPresenter

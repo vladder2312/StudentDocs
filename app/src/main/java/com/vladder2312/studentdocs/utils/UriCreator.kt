@@ -6,6 +6,9 @@ import android.os.Environment
 import android.os.StrictMode
 import java.io.File
 
+/**
+ * Утилита для создания ссылки для фото
+ */
 object UriCreator {
 
     fun createUri(context: Context): Uri {

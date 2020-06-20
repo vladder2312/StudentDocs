@@ -14,6 +14,9 @@ import com.vladder2312.studentdocs.ui.options.OptionsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
+/**
+ * Главная активити приложения, содержащая 3 фрагмента
+ */
 class MainActivity : MvpAppCompatActivity(), MainView {
 
     @InjectPresenter

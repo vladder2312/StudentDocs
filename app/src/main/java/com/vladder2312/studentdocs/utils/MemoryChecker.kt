@@ -4,6 +4,9 @@ import android.content.ContentResolver
 import android.net.Uri
 import android.os.ParcelFileDescriptor
 
+/**
+ * Утилита для расчёта размера памяти, занимаемой фотографиями
+ */
 object MemoryChecker {
 
     fun calculateUsedMemory(

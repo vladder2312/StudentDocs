@@ -2,8 +2,6 @@ package com.vladder2312.studentdocs.ui.options
 
 import android.content.ContentResolver
 import android.net.Uri
-import android.os.ParcelFileDescriptor
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.vladder2312.studentdocs.App
@@ -13,6 +11,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+/**
+ * Презентер фрагмента настроек приложения
+ */
 @InjectViewState
 class OptionsPresenter : MvpPresenter<OptionsView>() {
 

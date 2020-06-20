@@ -11,6 +11,9 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
+/**
+ * Презентер фрагмента просмотра и поиска документов
+ */
 @InjectViewState
 class DocumentsPresenter : MvpPresenter<DocumentsView>() {
 

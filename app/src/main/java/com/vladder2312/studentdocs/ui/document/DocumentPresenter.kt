@@ -1,6 +1,5 @@
 package com.vladder2312.studentdocs.ui.document
 
-import android.net.Uri
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.vladder2312.studentdocs.App
@@ -12,6 +11,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+/**
+ * Презентер фрагмента с информацией о документе
+ */
 @InjectViewState
 class DocumentPresenter : MvpPresenter<DocumentView>() {
 

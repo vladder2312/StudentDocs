@@ -6,6 +6,9 @@ import android.view.Window
 import com.vladder2312.studentdocs.R
 import kotlinx.android.synthetic.main.dialog_photo.*
 
+/**
+ * Диалог выбора источника фото
+ */
 object PhotoDialog {
 
     fun showDialog(context: Context, onCameraClick: () -> Unit, onGalleryClick: () -> Unit) {
