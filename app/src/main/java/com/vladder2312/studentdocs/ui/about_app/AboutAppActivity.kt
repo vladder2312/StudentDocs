@@ -4,6 +4,9 @@ import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.vladder2312.studentdocs.R
 
+/**
+ * Активити с информацией о приложении
+ */
 class AboutAppActivity : MvpAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

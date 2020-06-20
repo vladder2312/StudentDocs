@@ -10,6 +10,9 @@ import com.vladder2312.studentdocs.domain.Document
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
+/**
+ * Контроллер адаптера для прокручивающегося списка документов
+ */
 class DocumentsController(
     private val onClickListener: (Document) -> Unit
 ) : BindableItemController<Document, DocumentsController.DocumentHolder>() {

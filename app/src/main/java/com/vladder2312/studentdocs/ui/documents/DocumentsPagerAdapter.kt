@@ -9,6 +9,9 @@ import com.vladder2312.studentdocs.R
 import kotlinx.android.synthetic.main.page_documents.view.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 
+/**
+ * Адаптер для ViewPager категорий
+ */
 class DocumentsPagerAdapter(
     private val adapter: EasyAdapter
 ) : RecyclerView.Adapter<DocumentsPagerAdapter.PagerViewHolder>() {

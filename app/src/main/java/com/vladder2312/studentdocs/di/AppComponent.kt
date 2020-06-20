@@ -15,6 +15,9 @@ import com.vladder2312.studentdocs.ui.options.OptionsPresenter
 import dagger.Component
 import javax.inject.Singleton
 
+/**
+ * Компонент приложения
+ */
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {

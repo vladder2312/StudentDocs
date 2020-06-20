@@ -6,6 +6,9 @@ import androidx.room.PrimaryKey
 import com.vladder2312.studentdocs.domain.Category
 import com.vladder2312.studentdocs.domain.Document
 
+/**
+ * Сущность документ для базы данных
+ */
 @Entity
 data class DocumentEntity(
     @PrimaryKey var id: String,

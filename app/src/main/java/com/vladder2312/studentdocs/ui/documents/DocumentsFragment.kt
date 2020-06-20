@@ -14,6 +14,9 @@ import com.vladder2312.studentdocs.ui.document.DocumentActivity
 import kotlinx.android.synthetic.main.fragment_documents.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 
+/**
+ * Фрагмент просмотра и поиска документов
+ */
 class DocumentsFragment : MvpAppCompatFragment(), DocumentsView {
 
     @InjectPresenter

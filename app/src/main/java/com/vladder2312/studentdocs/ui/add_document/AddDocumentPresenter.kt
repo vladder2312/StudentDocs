@@ -9,6 +9,9 @@ import com.vladder2312.studentdocs.domain.Document
 import com.vladder2312.studentdocs.domain.Photo
 import javax.inject.Inject
 
+/**
+ * Презентер фрагмента добавления документа
+ */
 @InjectViewState
 class AddDocumentPresenter : MvpPresenter<AddDocumentView>() {
 

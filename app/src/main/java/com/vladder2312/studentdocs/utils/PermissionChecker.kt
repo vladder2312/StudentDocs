@@ -7,6 +7,9 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.app.ActivityCompat
 
+/**
+ * Утилита для провеки и получения разрешений от пользователя
+ */
 object PermissionChecker {
 
     private const val CAMERA_REQUEST_CODE = 3

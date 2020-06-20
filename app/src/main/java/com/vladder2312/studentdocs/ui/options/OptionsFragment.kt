@@ -11,6 +11,9 @@ import com.vladder2312.studentdocs.R
 import com.vladder2312.studentdocs.ui.about_app.AboutAppActivity
 import kotlinx.android.synthetic.main.fragment_options.*
 
+/**
+ * Фрагмент настроек приложения
+ */
 class OptionsFragment : MvpAppCompatFragment(), OptionsView {
 
     @InjectPresenter

@@ -6,6 +6,9 @@ import com.vladder2312.studentdocs.domain.Photo
 import io.reactivex.Flowable
 import javax.inject.Inject
 
+/**
+ * Репозиторий документов
+ */
 class DocRepository @Inject constructor(
     private val docDao: DocDao
 ) {

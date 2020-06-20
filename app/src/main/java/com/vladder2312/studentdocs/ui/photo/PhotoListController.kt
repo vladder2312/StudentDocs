@@ -1,6 +1,5 @@
 package com.vladder2312.studentdocs.ui.photo
 
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
@@ -10,6 +9,9 @@ import com.vladder2312.studentdocs.domain.Photo
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
+/**
+ * Контроллер прокручивающегося списка фотографий
+ */
 class PhotoListController(
     private val onClickPhotoListener: (Photo) -> Unit,
     private val onLongClickListener: (Photo) -> Boolean

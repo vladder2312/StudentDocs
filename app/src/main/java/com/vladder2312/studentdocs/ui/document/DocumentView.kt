@@ -3,6 +3,9 @@ package com.vladder2312.studentdocs.ui.document
 import com.arellomobile.mvp.MvpView
 import com.vladder2312.studentdocs.domain.Photo
 
+/**
+ * Интерфейс View с информацией о документе
+ */
 interface DocumentView : MvpView {
 
     fun initRecycler()

@@ -8,6 +8,9 @@ import com.vladder2312.studentdocs.di.DaggerAppComponent
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
 
+/**
+ * Класс приложения
+ */
 class App : Application() {
 
     companion object{

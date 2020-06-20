@@ -10,6 +10,9 @@ import com.vladder2312.studentdocs.ui.options.OptionsFragment
 import dagger.Module
 import dagger.Provides
 
+/**
+ * Модуль приложения
+ */
 @Module
 class AppModule(private val context: Context) {
 

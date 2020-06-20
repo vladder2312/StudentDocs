@@ -26,6 +26,9 @@ import kotlinx.android.synthetic.main.fragment_add_document.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 
+/**
+ * Фрагмент добавления документа
+ */
 class AddDocumentFragment : MvpAppCompatFragment(), AddDocumentView {
 
     @InjectPresenter

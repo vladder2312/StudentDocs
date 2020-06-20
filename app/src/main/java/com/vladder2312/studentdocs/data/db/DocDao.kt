@@ -8,6 +8,9 @@ import com.vladder2312.studentdocs.data.db.entities.DocumentEntity
 import com.vladder2312.studentdocs.data.db.entities.PhotoEntity
 import io.reactivex.Flowable
 
+/**
+ * Интерфейс объекта доступа к данным БД
+ */
 @Dao
 interface DocDao {
 
